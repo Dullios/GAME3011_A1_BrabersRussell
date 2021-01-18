@@ -8,8 +8,9 @@ public class SpotSpawner : MonoBehaviour
 
     [Header("Spawn Details")]
     public GameObject spotPrefab;
+    public int numberOfSpots;
     public float minX, maxX;
-    public float minY, maxY;
+    public float minZ, maxZ;
 
     private void Awake()
     {
@@ -22,7 +23,11 @@ public class SpotSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        for(int i = 0; i < numberOfSpots; i++)
+        {
+            Vector3 pos = new Vector3(Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ));
+            GameObject.Instantiate(spotPrefab, pos, Quaternion.identity, gameObject.transform);
+        }
     }
 
     // Update is called once per frame

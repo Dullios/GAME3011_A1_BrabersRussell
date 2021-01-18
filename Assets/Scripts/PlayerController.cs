@@ -8,7 +8,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private GameState gameState;
+
+    public GameObject exclamation;
     public float speed;
+
+    [SerializeField]
+    private bool spotDetected;
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +32,28 @@ public class PlayerController : MonoBehaviour
 
                 movement *= speed;
                 rigidBody.velocity = movement;
+
+                if(spotDetected)
+                {
+
+                }
                 break;
             
             case GameState.MiniGame:
 
                 break;
         }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        exclamation.SetActive(true);
+        spotDetected = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        exclamation.SetActive(false);
+        spotDetected = false;
     }
 }
