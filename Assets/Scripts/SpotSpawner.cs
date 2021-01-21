@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class SpotSpawner : MonoBehaviour
 {
-    private SpotSpawner instance;
+    private static SpotSpawner instance;
+
+    public static SpotSpawner Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
     [Header("Spawn Details")]
     public GameObject spotPrefab;
