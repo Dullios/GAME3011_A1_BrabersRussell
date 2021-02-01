@@ -9,3 +9,9 @@ public enum GameState
     MiniGame
 }
 
+[System.Serializable]
+public enum MineMode
+{
+    Scan,
+    Extract
+}

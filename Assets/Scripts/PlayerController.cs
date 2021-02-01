@@ -35,7 +35,11 @@ public class PlayerController : MonoBehaviour
 
                 if(spotDetected)
                 {
-
+                    if(Input.GetKeyDown(KeyCode.Space))
+                    {
+                        bool toggle = TileManager.Instance.gameObject.activeSelf ? false : true;
+                        TileManager.Instance.gameObject.SetActive(toggle);
+                    }
                 }
                 break;
             

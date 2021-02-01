@@ -12,10 +12,11 @@ public class TileManager : MonoBehaviour
         {
             return instance;
         }
-    }    
+    }
 
     [Header("Tile Grid")]
     public GameObject[,] tileGrid;
+    public MineMode mode;
 
     [Header("Generation")]
     public GameObject tilePrefab;
@@ -36,6 +37,7 @@ public class TileManager : MonoBehaviour
     void Start()
     {
         tileGrid = new GameObject[rows, columns];
+        mode = MineMode.Scan;
 
         for(int r = 0; r < rows; r++)
         {
@@ -51,11 +53,9 @@ public class TileManager : MonoBehaviour
                 tileGrid[r, c] = t;
             }
         }
+
+        gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
