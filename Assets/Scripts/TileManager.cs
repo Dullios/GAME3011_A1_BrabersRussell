@@ -72,6 +72,16 @@ public class TileManager : MonoBehaviour
 
     public void RevealTiles(int x, int y)
     {
+        for (int r = -1; r < 2; r++)
+        {
+            int xOffset = x + r;
 
+            for (int c = -1; c < 2; c++)
+            {
+                int yOffset = y + c;
+
+                tileGrid[xOffset, yOffset].GetComponent<TileData>().HighlightTile();
+            }
+        }
     }
 }

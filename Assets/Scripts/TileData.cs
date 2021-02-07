@@ -38,15 +38,20 @@ public class TileData : MonoBehaviour, IPointerClickHandler
         switch(TileManager.Instance.mode)
         {
             case MineMode.Scan:
-
+                if (TileManager.Instance.activeSpot.scanCount > 0)
+                {
+                    TileManager.Instance.RevealTiles(row, column);
+                    TileManager.Instance.activeSpot.scanCount--;
+                }
                 break;
+
             case MineMode.Extract:
 
                 break;
         }
     }
 
-    private void HighlightTile()
+    public void HighlightTile()
     {
         int maxResouces = TileManager.Instance.activeSpot.maxResourceValue;
         Color color = new Color(0, 0, 0);
