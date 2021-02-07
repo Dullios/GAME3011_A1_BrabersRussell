@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TileData : MonoBehaviour, IPointerClickHandler
 {
@@ -10,13 +11,24 @@ public class TileData : MonoBehaviour, IPointerClickHandler
     public int column;
 
     [Header("Resource Info")]
-    private SpotSpawner spotDetails;
+    public int resourceCount;
 
-
-    public void SetValues(int x, int y)
+    public void Initialize(int x, int y)
     {
         row = x;
         column = y;
+
+        TileManager.Instance.OnMiniGameStart.AddListener(OnMiniGameStartAction);
+    }
+
+    public void SetResource(int resource)
+    {
+        resourceCount = resource;
+    }
+
+    private void OnMiniGameStartAction()
+    {
+        resourceCount = TileManager.Instance.activeSpot.resourceSpread[row, column].resourceCount;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -26,9 +38,36 @@ public class TileData : MonoBehaviour, IPointerClickHandler
         switch(TileManager.Instance.mode)
         {
             case MineMode.Scan:
+
                 break;
             case MineMode.Extract:
+
                 break;
         }
+    }
+
+    private void HighlightTile()
+    {
+        int maxResouces = TileManager.Instance.activeSpot.maxResourceValue;
+        Color color = new Color(0, 0, 0);
+
+        if(resourceCount == maxResouces)
+        {
+            color = new Color(1, 0, 0);
+        }
+        else if(resourceCount == maxResouces / 2)
+        {
+            color = new Color(1, 0.64f, 0);
+        }
+        else if(resourceCount == maxResouces / 4)
+        {
+            color = new Color(1, 1, 0);
+        }
+        else
+        {
+            color = new Color(0.75f, 0.75f, 0.75f);
+        }
+
+        GetComponent<Image>().color = color;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TileManager : MonoBehaviour
 {
@@ -24,6 +25,12 @@ public class TileManager : MonoBehaviour
     public int columns;
     public float tileWidth, tileHeight;
     public float horiPadding, vertPadding;
+
+    [Header("Active Spot")]
+    public SpotData activeSpot;
+
+    [Header("Events")]
+    public UnityEvent OnMiniGameStart;
 
     private void Awake()
     {
@@ -49,7 +56,7 @@ public class TileManager : MonoBehaviour
                 int rPos = r + 1;
                 t.GetComponent<RectTransform>().anchoredPosition = new Vector2(cPos * tileWidth + (cPos * horiPadding), -(rPos * tileHeight + (rPos * vertPadding)));
                 t.GetComponent<RectTransform>().sizeDelta = new Vector2(tileWidth, tileHeight);
-                t.GetComponent<TileData>().SetValues(r, c);
+                t.GetComponent<TileData>().Initialize(r, c);
                 tileGrid[r, c] = t;
             }
         }
@@ -57,5 +64,14 @@ public class TileManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void StartMiniGame(SpotData spot)
+    {
+        activeSpot = spot;
+        OnMiniGameStart.Invoke();
+    }
 
+    public void RevealTiles(int x, int y)
+    {
+
+    }
 }

@@ -20,7 +20,6 @@ public class SpotSpawner : MonoBehaviour
     public float minX, maxX;
     public float minZ, maxZ;
 
-
     private void Awake()
     {
         if (instance == null)

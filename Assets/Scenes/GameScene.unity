@@ -183,6 +183,10 @@ MonoBehaviour:
   tileHeight: 28
   horiPadding: 8
   vertPadding: 7
+  activeSpot: {fileID: 0}
+  OnMiniGameStart:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &248351893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1212,9 +1216,6 @@ MonoBehaviour:
   maxX: 5.5
   minZ: -5.5
   maxZ: 5.5
-  scanCount: 0
-  extractCount: 0
-  maxResourceValue: 0
 --- !u!4 &1412417090
 Transform:
   m_ObjectHideFlags: 0

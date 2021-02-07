@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private bool spotDetected;
+    private SpotData currentSpot;
 
     // Start is called before the first frame update
     void Start()
@@ -37,14 +38,21 @@ public class PlayerController : MonoBehaviour
                 {
                     if(Input.GetKeyDown(KeyCode.Space))
                     {
-                        bool toggle = TileManager.Instance.gameObject.activeSelf ? false : true;
-                        TileManager.Instance.gameObject.SetActive(toggle);
+                        TileManager.Instance.gameObject.SetActive(true);
+                        TileManager.Instance.StartMiniGame(currentSpot);
+
+                        gameState = GameState.MiniGame;
                     }
                 }
                 break;
             
             case GameState.MiniGame:
+                if(Input.GetKeyDown(KeyCode.Space))
+                {
+                    TileManager.Instance.gameObject.SetActive(false);
 
+                    gameState = GameState.MainGame;
+                }
                 break;
         }
     }
@@ -53,6 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         exclamation.SetActive(true);
         spotDetected = true;
+        currentSpot = other.GetComponent<SpotData>();
     }
 
     private void OnTriggerExit(Collider other)
