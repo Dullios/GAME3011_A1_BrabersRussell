@@ -35,7 +35,6 @@ public class SpotSpawner : MonoBehaviour
         {
             Vector3 pos = new Vector3(Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ));
             GameObject spot = GameObject.Instantiate(spotPrefab, pos, Quaternion.identity, gameObject.transform);
-            spot.AddComponent<SpotData>();
         }
     }
 }

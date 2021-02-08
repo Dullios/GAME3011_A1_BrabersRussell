@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         gameState = GameState.MainGame;
+
+        TileManager.Instance.OnMiniGameEnd.AddListener(OnMiniGameEndAction);
     }
 
     // Update is called once per frame
@@ -55,6 +57,13 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void OnMiniGameEndAction()
+    {
+        gameState = GameState.MainGame;
+        exclamation.SetActive(false);
+        spotDetected = false;
     }
 
     private void OnTriggerStay(Collider other)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ToggleModeScript : MonoBehaviour
 {
-    private bool isPressed = false;
+    private bool isPressed = true;
 
     public GameObject scanText;
     public GameObject mineText;

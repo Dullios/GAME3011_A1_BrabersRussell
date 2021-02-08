@@ -41,12 +41,13 @@ public class TileData : MonoBehaviour, IPointerClickHandler
                 if (TileManager.Instance.activeSpot.scanCount > 0)
                 {
                     TileManager.Instance.RevealTiles(row, column);
-                    TileManager.Instance.activeSpot.scanCount--;
+                    TileManager.Instance.UpdateScans();
                 }
                 break;
 
             case MineMode.Extract:
-
+                TileManager.Instance.ExtractTiles(row, column);
+                TileManager.Instance.UpdateMines();
                 break;
         }
     }

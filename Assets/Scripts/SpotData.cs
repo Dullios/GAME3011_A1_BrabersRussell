@@ -14,18 +14,17 @@ public class SpotData : MonoBehaviour
     public int scanCount;
     public int extractCount;
     public int maxResourceValue;
+    public int hotSpotCount;
 
     [Header("Tile Values")]
     public ResourceView[,] resourceSpread;
-    public int rows = TileManager.Instance.rows;
-    public int columns = TileManager.Instance.columns;
+    public int rows;
+    public int columns;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        scanCount = 6;
-        extractCount = 3;
         maxResourceValue = 1000 * Random.Range(2, 6);
 
         rows = TileManager.Instance.rows;
@@ -51,7 +50,7 @@ public class SpotData : MonoBehaviour
 
     private void RandomizeHotSpots()
     {
-        for(int i = 0; i < 6; i++)
+        for(int i = 0; i < hotSpotCount; i++)
         {
             int x = Random.Range(0, rows);
             int y = Random.Range(0, columns);
