@@ -33,7 +33,7 @@ public class TileData : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Tile X: " + row + " Y: " + column);
+        //Debug.Log("Tile X: " + row + " Y: " + column);
 
         switch(TileManager.Instance.mode)
         {
